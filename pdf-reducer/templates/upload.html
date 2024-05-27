@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <h1>PDF to Text</h1>
+    <form
+      action="/upload"
+      method="POST" 
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" accept=".pdf" />
+      <select name="resolution" id="resolution" required>
+        <option value="/screen">Tela (72 dpi)</option>
+        <option value="/ebook">Ebook (150 dpi)</option>
+        <option value="/printer">Impressora (300 dpi)</option>
+        <option value="/prepress">Pré-impressão (300 dpi)</option>
+        <option value="/default">Padrão</option>
+      </select><br><br>
+      <input type="submit"/>
+    </form>   
+  </body>
+</html>
