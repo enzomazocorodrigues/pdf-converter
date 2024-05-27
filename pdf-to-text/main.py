@@ -18,12 +18,12 @@ def upload():
          raise Exception('Nenhum arquivo informado.')
       filename, extension = file.filename.split('.')
       if not extension == 'pdf':
-         raise Exception("Arquivo deve ser .pdf") 
+         raise Exception('Arquivo deve ser .pdf.')
       text = pdf_to_text(file)
       return text
    except Exception as error:
+      print(str(error))
       return redirect('/')
-
 
 def pdf_to_text(file):
    pdf = PdfReader(file)
@@ -33,4 +33,4 @@ def pdf_to_text(file):
    return text
 		
 if __name__ == '__main__':
-   app.run(debug = True)
+   app.run(debug=True, host='0.0.0.0', port=5000)
