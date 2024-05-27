@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, flash, redirect, render_template, request
 from pypdf import PdfReader
 import os
 
@@ -10,10 +10,20 @@ def index():
 	
 @app.route('/upload', methods = ['POST'])
 def upload():
-   file = request.files['file']
-   filename = file.filename.split('.')[0]
-   text = pdf_to_text(file)
-   return text
+   try:
+      if 'file' not in request.files:
+         raise Exception('Nenhum arquivo informado.')
+      file = request.files['file']
+      if file.filename == '':
+         raise Exception('Nenhum arquivo informado.')
+      filename, extension = file.filename.split('.')
+      if not extension == 'pdf':
+         raise Exception("Arquivo deve ser .pdf") 
+      text = pdf_to_text(file)
+      return text
+   except Exception as error:
+      return redirect('/')
+
 
 def pdf_to_text(file):
    pdf = PdfReader(file)
