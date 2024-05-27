@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  pdf-to-text:
+    build: ./pdf-to-text
+    ports:
+      - "5001:5000"
+    environment:
+      - LOG_SERVICE_URL=http://logs:5000/
+      - LOG_TOKEN=bcwB3I6rm4ptlZGl
+
+  pdf-reducer:
+    build: ./pdf-reducer
+    ports:
+      - "5002:5000"
+    environment:
+      - LOG_SERVICE_URL=http://logs:5000/
+      - LOG_TOKEN=bcwB3I6rm4ptlZGl
+
+  logs:
+    build: ./logs
+    ports:
+      - "5003:5000"
+    environment:
+      - LOG_TOKEN=bcwB3I6rm4ptlZGl
