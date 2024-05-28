@@ -29,18 +29,19 @@ def upload():
       if not resolution:
          raise Exception('Nunhuma resolução informada.')
 
-      input_path = os.path.join("/tmp", file.filename)
-      output_path = os.path.join("/tmp", "reduced_" + file.filename)
+      resolution_key = get_resolution_key(resolution)
+      input_path = os.path.join('/tmp', file.filename)
+      output_path = os.path.join('/tmp', f'{resolution}_{filename}.pdf')
       file.save(input_path)
 
       gs_command = [
-         "gs",
-         "-sDEVICE=pdfwrite",
-         "-dCompatibilityLevel=1.4",
-         f"-dPDFSETTINGS={resolution}",
-         "-dNOPAUSE",
-         "-dBATCH",
-         f"-sOutputFile={output_path}",
+         'gs',
+         '-sDEVICE=pdfwrite',
+         '-dCompatibilityLevel=1.4',
+         f'-dPDFSETTINGS={resolution_key}',
+         '-dNOPAUSE',
+         '-dBATCH',
+         f'-sOutputFile={output_path}',
          input_path
       ]
 
@@ -63,6 +64,19 @@ def upload():
       }
       log(log_entry)
       return redirect('/')
+
+def get_resolution_key(resolution):
+   try:
+      resolutions = {
+         'screen': '/screen',
+         'ebook': '/ebook',
+         'printer': '/printer',
+         'prepress': '/prepress',
+         'default': '/default'
+      }
+      return resolutions[resolution]
+   except KeyError:
+      raise Exception('Resolução informada inválida.')
 
 def log(log_entry):
    headers = {
