@@ -80,6 +80,12 @@ curl http://localhost:5003/
         </a>
     </li>
     <li>
+        <a href="https://github.com/etrova" style="display: flex; align-items: center; gap: 8px;">
+            <img src="https://github.com/etrova.png" alt="Eduardo Trova" style="border-radius: 50%; width: 32px; height: 32px;">
+            Eduardo Trova
+        </a>
+    </li>
+   <li>
         <a href="https://github.com/enzomazocorodrigues" style="display: flex; align-items: center; gap: 8px;">
             <img src="https://github.com/enzomazocorodrigues.png" alt="Enzo Rodrigues" style="border-radius: 50%; width: 32px; height: 32px;">
             Enzo Rodrigues
