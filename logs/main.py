@@ -19,7 +19,6 @@ def save_logs():
       append_log(request.json) 
       return jsonify({'status': 'logged'}), 200
    except Exception as error:
-      print(str(error))
       return jsonify({'error': 'Unexpected error'}), 500
 
 def append_log(log_entry):

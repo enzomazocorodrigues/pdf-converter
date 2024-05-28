@@ -36,7 +36,7 @@ def upload():
       log(log_entry)
       return send_file(output_path, as_attachment=True)
    except Exception as error:
-      print(str(error))
+      print(str(error), flush=True)
       log_entry = {
          'service': 'pdf-to-text',
          'error': str(error),
